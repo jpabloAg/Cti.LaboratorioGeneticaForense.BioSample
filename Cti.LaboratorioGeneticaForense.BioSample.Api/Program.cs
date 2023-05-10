@@ -29,18 +29,32 @@ var connectionString = builder.Configuration.GetConnectionString("Database");
 builder.Services.AddDbContext<ApplicationDbContext>(
     optionsBuilder => optionsBuilder.UseNpgsql(connectionString));
 
+builder.Services.AddCors(options =>
+{
+
+    options.AddPolicy("MyAllowedOrigins",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("MyAllowedOrigins");
 
 app.MapControllers();
 
