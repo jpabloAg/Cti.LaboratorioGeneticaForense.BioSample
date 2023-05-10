@@ -5,5 +5,5 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Domain.Abstractions.Repositor
 public interface IDesaparecidoRepository
 {
     void Add(Desaparecido desaparecido);
-    IEnumerable<Desaparecido> GetAll(IEnumerable<Guid> Ids);
+    IEnumerable<Desaparecido> GetMuestras(Guid Id);
 }

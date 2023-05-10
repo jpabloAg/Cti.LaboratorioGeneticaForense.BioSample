@@ -5,5 +5,7 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Domain.Abstractions.Repositor
 public interface IMuestradanteRepository
 {
     void Add(Muestradante muestradante);
-    Task<Muestradante?> GetByIdAsync(string documentoIdentidad);
+    Task<Muestradante?> GetByDocumentoIdentidadAsync(string documentoIdentidad);
+    Task<Muestradante?> GetByIdAsync(Guid muestradanteId);
+    Task<Muestradante?> GetMuestra(Guid muestradanteId);
 }

@@ -23,7 +23,7 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Application.Muestras.Commands
 
         public async Task<Guid> Handle(CreateMuestraCommand request, CancellationToken cancellationToken)
         {
-            var muestradante = await _muestradanteRepository.GetByIdAsync(request.documentoIdentidadMuestradante);
+            var muestradante = await _muestradanteRepository.GetByDocumentoIdentidadAsync(request.documentoIdentidadMuestradante);
 
             if(muestradante is null)
             {

@@ -14,10 +14,11 @@ public sealed class DesaparecidoRepository : IDesaparecidoRepository
     public void Add(Desaparecido desaparecido) =>
         _dbcontext.Set<Desaparecido>().Add(desaparecido);
 
-    public IEnumerable<Desaparecido> GetAll(IEnumerable<Guid> Ids)
+    public IEnumerable<Desaparecido> GetMuestras(Guid Id)
     {
         return _dbcontext.Set<Desaparecido>()
-            .Where(x => Ids.Any(id => id.Equals(x.Id)))
-            .Include(x => x.MuestrasDesaparecidos);
+            .Where(x => x.Id.Equals(Id))
+                .Include(x => x.MuestrasDesaparecidos)
+                    .ThenInclude(muestraDesaparecido => muestraDesaparecido.Muestra);
     }
 }

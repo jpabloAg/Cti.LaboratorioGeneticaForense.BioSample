@@ -34,10 +34,10 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("filterbyid")]
-        public IEnumerable<Desaparecido> GetMuestradantes([FromBody] IEnumerable<Guid> request)
+        [HttpGet("muestras/{desaparecidoId}")]
+        public IEnumerable<Desaparecido> GetMuestradantes(Guid desaparecidoId)
         {
-            return _desaparecidoRepository.GetAll(request);
+            return _desaparecidoRepository.GetMuestras(desaparecidoId);
         }
     }
 }
