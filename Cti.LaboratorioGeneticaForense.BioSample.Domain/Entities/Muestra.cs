@@ -9,9 +9,9 @@ public sealed class Muestra : Entity
     private Muestra(
         Guid id,
         string? radicadoInterno,
-        TipoMuestra tipoMuestra,
+        string tipoMuestra,
         Region lugarTomaMuestra,
-        EstadoMuestra estadoMuestra,
+        string estadoMuestra,
         DateOnly fechaTomaMuestra,
         DateOnly fechaLlegadaLaboratorio,
         bool consentimientoPoblacional,
@@ -33,9 +33,9 @@ public sealed class Muestra : Entity
     }
 
     public string? RadicadoInterno { get; private set; }
-    public TipoMuestra TipoMuestra { get; private set; }
+    public string TipoMuestra { get; private set; }
     public Region LugarTomaMuestra { get; private set; }
-    public EstadoMuestra EstadoMuestra { get; private set; }
+    public string EstadoMuestra { get; private set; }
     public DateOnly FechaTomaMuestra { get; private set; }
     public DateOnly FechaLlegadaLaboratorio { get; private set; }
     public bool ConsentimientoPoblacional { get; private set; }
@@ -46,9 +46,9 @@ public sealed class Muestra : Entity
     public static Muestra Create(
         Guid id,
         string? radicadoInterno,
-        TipoMuestra tipoMuestra,
+        string tipoMuestra,
         Region lugarTomaMuestra,
-        EstadoMuestra estadoMuestra,
+        string estadoMuestra,
         DateOnly fechaTomaMuestra,
         DateOnly fechaLlegadaLaboratorio,
         bool consentimientoPoblacional,

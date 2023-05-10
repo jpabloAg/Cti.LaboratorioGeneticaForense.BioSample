@@ -9,11 +9,11 @@ public sealed class Muestradante : Entity
     private Muestradante(
         Guid id,
         string documentoIdentidad,
-        TipoDocumento tipoDocumento,
+        string tipoDocumento,
         string nombre,
         string primerApellido,
         string? segundoApellido,
-        Parentesco parentesco,
+        string parentesco,
         DateOnly fechaNacimiento,
         Region lugarNacimiento,
         string? direccion,
@@ -40,22 +40,22 @@ public sealed class Muestradante : Entity
     public string Nombre { get; private set; }
     public string PrimerApellido { get; private set; }
     public string? SegundoApellido { get; private set; }
-    public Parentesco Parentesco { get; private set; }
+    public string Parentesco { get; private set; }
     public DateOnly FechaNacimiento { get; private set; }
     public Region LugarNacimiento { get; private set; }
     public string? Direccion { get; private set; }
     public string? Telefono { get; private set; }
-    public TipoDocumento TipoDocumento { get; private set; }
+    public string TipoDocumento { get; private set; }
     public Muestra muestra { get; set; }
 
     public static Muestradante Create(
         Guid id,
         string documentoIdentidad,
-        TipoDocumento tipoDocumento,
+        string tipoDocumento,
         string nombre,
         string primerApellido,
         string? segundoApellido,
-        Parentesco parentesco,
+        string parentesco,
         DateOnly fechaNacimiento,
         Region lugarNacimiento,
         string? direccion,
@@ -84,10 +84,10 @@ public class MuestradanteDto : Entity
     public string Nombre { get; private set; }
     public string PrimerApellido { get; private set; }
     public string? SegundoApellido { get; private set; }
-    public Parentesco Parentesco { get; private set; }
+    public string Parentesco { get; private set; }
     public DateTime FechaNacimiento { get; private set; }
     public Region LugarNacimiento { get; private set; }
     public string? Direccion { get; private set; }
     public string? Telefono { get; private set; }
-    public TipoDocumento TipoDocumento { get; private set; }
+    public string TipoDocumento { get; private set; }
 }

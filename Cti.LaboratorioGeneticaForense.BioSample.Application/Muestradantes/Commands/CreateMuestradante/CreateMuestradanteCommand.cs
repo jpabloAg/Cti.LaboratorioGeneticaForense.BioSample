@@ -5,11 +5,11 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Application.Muestradantes.Com
 
 public sealed record CreateMuestradanteCommand(
     string documentoIdentidad,
-    TipoDocumento tipoDocumento,
+    string tipoDocumento,
     string nombre,
     string primerApellido,
     string? segundoApellido,
-    Parentesco parentesco,
+    string parentesco,
     DateTime fechaNacimiento,
     string municipio,
     string departamento,

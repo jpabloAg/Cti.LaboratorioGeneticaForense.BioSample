@@ -10,10 +10,10 @@ public sealed class Desaparecido : Entity
         Guid id,
         string nombre, 
         string documentoIdentidad, 
-        TipoDocumento tipoDocumento, 
+        string tipoDocumento, 
         string primerApellido, 
         string? segundoApellido, 
-        Genero genero, 
+        string genero, 
         string sirdec, 
         Region lugarNacimiento, 
         Region lugarTomaCuerpo) 
@@ -36,10 +36,10 @@ public sealed class Desaparecido : Entity
 
     public string Nombre { get; private set; }
     public string documentoIdentidad { get; private set; }
-    public TipoDocumento TipoDocumento { get; private set; }
+    public string TipoDocumento { get; private set; }
     public string PrimerApellido { get; private set; }
     public string? SegundoApellido { get; private set; }
-    public Genero Genero { get; private set; }
+    public string Genero { get; private set; }
     public string Sirdec { get; private set; }
     public Region LugarNacimiento { get; private set; }
     public Region LugarTomaCuerpo { get; private set; }
@@ -49,10 +49,10 @@ public sealed class Desaparecido : Entity
         Guid id,
         string nombre,
         string documentoIdentidad,
-        TipoDocumento tipoDocumento,
+        string tipoDocumento,
         string primerApellido,
         string? segundoApellido,
-        Genero genero,
+        string genero,
         string sirdec,
         Region lugarNacimiento,
         Region lugarTomaCuerpo) 
@@ -77,10 +77,10 @@ public class DesaparecidoDto : Entity
 {
     public string Nombre { get; private set; }
     public string documentoIdentidad { get; private set; }
-    public TipoDocumento TipoDocumento { get; private set; }
+    public string TipoDocumento { get; private set; }
     public string PrimerApellido { get; private set; }
     public string? SegundoApellido { get; private set; }
-    public Genero Genero { get; private set; }
+    public string Genero { get; private set; }
     public string Sirdec { get; private set; }
     public Region LugarNacimiento { get; private set; }
     public Region LugarTomaCuerpo { get; private set; }

@@ -6,10 +6,10 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Application.Muestras.Commands
 {
     public sealed record CreateMuestraCommand(
         string radicadoInterno,
-        TipoMuestra tipoMuestra,
+        string tipoMuestra,
         string municipio,
         string departamento,
-        EstadoMuestra estadoMuestra,
+        string estadoMuestra,
         DateTime fechaTomaMuestra,
         DateTime fechaLlegadaLaboratorio,
         bool consentimientoPoblacional,
