@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Errors\" />
-    <Folder Include="Shared\" />
+    <Compile Remove="Errors\**" />
+    <Compile Remove="Shared\**" />
+    <EmbeddedResource Remove="Errors\**" />
+    <EmbeddedResource Remove="Shared\**" />
+    <None Remove="Errors\**" />
+    <None Remove="Shared\**" />
   </ItemGroup>
 
 </Project>

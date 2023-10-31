@@ -10,20 +10,21 @@
 
   <ItemGroup>
     <PackageReference Include="AWSSDK.S3" Version="3.7.104.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.24" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.15">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.33.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.33.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Cti.LaboratorioGeneticaForense.BioSample.Application\Cti.LaboratorioGeneticaForense.BioSample.Application.csproj" />
-    <ProjectReference Include="..\Cti.LaboratorioGeneticaForense.BioSample.Infrastructure\Cti.LaboratorioGeneticaForense.BioSample.Infrastructure.csproj" />
     <ProjectReference Include="..\Cti.LaboratorioGeneticaForense.BioSample.Persistence\Cti.LaboratorioGeneticaForense.BioSample.Persistence.csproj" />
-    <ProjectReference Include="..\Cti.LaboratorioGeneticaForense.BioSample.Presentation\Cti.LaboratorioGeneticaForense.BioSample.Presentation.csproj" />
   </ItemGroup>
 
 </Project>

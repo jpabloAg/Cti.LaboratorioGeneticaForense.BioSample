@@ -1,7 +1,10 @@
 using Cti.LaboratorioGeneticaForense.BioSample.Domain.Abstractions.Repositories;
 using Cti.LaboratorioGeneticaForense.BioSample.Persistence;
 using Cti.LaboratorioGeneticaForense.BioSample.Persistence.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,7 @@ builder.Services.AddTransient<IMuestraRepository, MuestraRepository>();
 builder.Services.AddTransient<IDesaparecidoRepository, DesaparecidoRepository>();
 builder.Services.AddTransient<IMuestraDesaparecidoRepository, MuestraDesaparecidoRepository>();
 builder.Services.AddTransient<IAnexoRepository, AnexoRepository>();
+builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddMediatR(config => 
@@ -28,6 +32,22 @@ var connectionString = builder.Configuration.GetConnectionString("Database");
 
 builder.Services.AddDbContext<ApplicationDbContext>(
     optionsBuilder => optionsBuilder.UseNpgsql(connectionString));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
 
 builder.Services.AddCors(options =>
 {
@@ -51,6 +71,8 @@ app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

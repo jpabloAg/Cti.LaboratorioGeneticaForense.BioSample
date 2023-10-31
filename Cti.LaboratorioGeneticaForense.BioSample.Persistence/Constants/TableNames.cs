@@ -7,4 +7,5 @@ internal static class TableNames
     internal const string Desaparecido = nameof(Desaparecido);
     internal const string MuestraDesaparecido = nameof(MuestraDesaparecido);
     internal const string Anexo = nameof(Anexo);
+    internal const string Usuario = nameof(Usuario);
 }
