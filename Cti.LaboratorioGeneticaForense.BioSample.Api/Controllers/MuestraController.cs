@@ -4,6 +4,7 @@ using Cti.LaboratorioGeneticaForense.BioSample.Domain.Abstractions.Repositories;
 using Cti.LaboratorioGeneticaForense.BioSample.Domain.Entities;
 using Cti.LaboratorioGeneticaForense.BioSample.Persistence;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<Guid> RegisterMuestra([FromBody] CreateMuestraCommand request)
         {
             var result = await _sender.Send(request);
@@ -29,6 +31,7 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
         }
 
         [HttpPost("vincular")]
+        [Authorize(Roles = "Administrator")]
         public async Task<MuestraDesaparecido> VincularMuestraDesaparecido([FromBody] MuestraDesaparecidoCommand request)
         {
             var result = await _sender.Send(request);
@@ -36,6 +39,7 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
         }
 
         [HttpGet("total")]
+        [Authorize]
         public ActionResult getTotalRegistros()
         {
             var result = new
