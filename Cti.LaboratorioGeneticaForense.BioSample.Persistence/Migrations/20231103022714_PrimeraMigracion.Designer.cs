@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cti.LaboratorioGeneticaForense.BioSample.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230510035701_change-enumtypes-stringtype")]
-    partial class changeenumtypesstringtype
+    [Migration("20231103022714_PrimeraMigracion")]
+    partial class PrimeraMigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,6 +144,10 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Persistence.Migrations
                     b.Property<DateOnly>("FechaNacimiento")
                         .HasColumnType("date");
 
+                    b.Property<string>("Genero")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("text");
@@ -184,6 +188,41 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Persistence.Migrations
                     b.HasIndex("DesaparecidoId");
 
                     b.ToTable("MuestraDesaparecido", (string)null);
+                });
+
+            modelBuilder.Entity("Cti.LaboratorioGeneticaForense.BioSample.Domain.Entities.Usuario", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GivenName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuario", (string)null);
                 });
 
             modelBuilder.Entity("Cti.LaboratorioGeneticaForense.BioSample.Domain.Entities.Anexo", b =>
