@@ -14,4 +14,5 @@ public sealed record CreateMuestradanteCommand(
     string municipio,
     string departamento,
     string? direccion,
-    string? telefono) : IRequest<Guid>;
+    string? telefono,
+    string genero) : IRequest<Guid>;

@@ -11,5 +11,5 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Application.Usuario.Commands.
     (
         string EmailAddress,
         string Password
-    ) : IRequest<string>;
+    ) : IRequest<UsuarioLoginDto>;
 }

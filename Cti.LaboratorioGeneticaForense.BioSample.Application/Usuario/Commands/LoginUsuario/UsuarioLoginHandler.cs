@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Cti.LaboratorioGeneticaForense.BioSample.Application.Usuario.Commands.LoginUsuario
 {
-    public sealed class UsuarioLoginHandler : IRequestHandler<UsuarioLogin, string>
+    public sealed class UsuarioLoginHandler : IRequestHandler<UsuarioLogin, UsuarioLoginDto>
     {
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -31,14 +31,23 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Application.Usuario.Commands.
             _configuration = configuration;
         }
 
-        public async Task<string> Handle(UsuarioLogin request, CancellationToken cancellationToken)
+        public async Task<UsuarioLoginDto> Handle(UsuarioLogin request, CancellationToken cancellationToken)
         {
             var usuario = await Authenticate(request);
             if (usuario is not null) {
                 string token = Generate(usuario);
-                return token;
+                return new UsuarioLoginDto
+                {
+                    Id = usuario.Id,
+                    token = token,
+                    Username = usuario.Username,
+                    EmailAddress = usuario.EmailAddress,
+                    GivenName = usuario.GivenName,
+                    Role = usuario.Role,
+                    Surname = usuario.Surname
+                };
             }
-            return string.Empty;
+            return null;
         }
 
         private async Task<Domain.Entities.Usuario> Authenticate(UsuarioLogin request)

@@ -20,20 +20,27 @@ internal sealed class CreateMuestradanteCommandHandler : IRequestHandler<CreateM
 
     public async Task<Guid> Handle(CreateMuestradanteCommand request, CancellationToken cancellationToken)
     {
-        var lugarNacimiento = new Region(request.departamento, request.municipio);
+        var existsMuestradanteByDocumentoIdentidad = await _muestradanteRepository.GetByDocumentoIdentidadAsync(request.documentoIdentidad);
+        if (existsMuestradanteByDocumentoIdentidad is not null)
+        {
+            return Guid.Empty;
+        }
+
+        var lugarNacimiento = new Region(request.departamento.ToUpper(), request.municipio.ToUpper());
 
         var muestradante = Muestradante.Create(
             Guid.NewGuid(),
             request.documentoIdentidad,
-            request.tipoDocumento,
-            request.nombre,
-            request.primerApellido,
-            request.segundoApellido,
-            request.parentesco,
+            request.tipoDocumento.ToUpper(),
+            request.nombre.ToUpper(),
+            request.primerApellido.ToUpper(),
+            request.segundoApellido?.ToUpper(),
+            request.parentesco.ToUpper(),
             new DateOnly(request.fechaNacimiento.Year, request.fechaNacimiento.Month, request.fechaNacimiento.Day),
             lugarNacimiento,
-            request.direccion,
-            request.telefono);
+            request.direccion?.ToUpper(),
+            request.telefono,
+            request.genero);
 
         _muestradanteRepository.Add(muestradante);
         await _unitOfWork.SaveChangesAsync();

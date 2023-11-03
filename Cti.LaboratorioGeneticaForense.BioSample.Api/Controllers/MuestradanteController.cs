@@ -4,6 +4,7 @@ using Cti.LaboratorioGeneticaForense.BioSample.Domain.Abstractions.Repositories;
 using Cti.LaboratorioGeneticaForense.BioSample.Domain.Entities;
 using Cti.LaboratorioGeneticaForense.BioSample.Persistence.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,34 +23,130 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<Guid> RegisterMuestradante([FromBody] CreateMuestradanteCommand request)
+        [Authorize(Roles = "Administrator")]
+        public async Task<ApiResponse<Guid>> RegisterMuestradante([FromBody] CreateMuestradanteCommand request)
         {
             var result = await _sender.Send(request);
-            return result;
+
+            if(result == Guid.Empty)
+            {
+                return new ApiResponse<Guid>
+                {
+                    StatusCode = 400,
+                    Data = Guid.Empty,
+                    ErrorMessage = "Ya existe un muestradante con identificacion " + request.documentoIdentidad
+                };
+            }
+
+            return new ApiResponse<Guid>
+            {
+                StatusCode = 201,
+                Data = result,
+                ErrorMessage = null
+            };
         }
 
         [HttpPost("filter")]
-        public async Task<IActionResult> GetMuestradante([FromBody] GetMuestradanteBySimilarityNameQuery request)
+        [Authorize]
+        public async Task<ApiResponse<IEnumerable<MuestradanteDto>>> GetMuestradante([FromBody] GetMuestradanteBySimilarityNameQuery request)
         {
             var result = await _sender.Send(request);
-            return Ok(result);
+
+            if (result.Any())
+            {
+                return new ApiResponse<IEnumerable<MuestradanteDto>>
+                {
+                    StatusCode = 200,
+                    Data = result,
+                    ErrorMessage = null
+                };
+            }
+
+            return new ApiResponse<IEnumerable<MuestradanteDto>>
+            {
+                StatusCode = 404,
+                Data = result,
+                ErrorMessage = "No se encontraron resultados para el filtro especificado"
+            };
         }
 
         [HttpGet("identificacion/{identificacion}")]
-        public async Task<IActionResult> GetMuestradanteByIdentificacion(string identificacion)
+        [Authorize]
+        public async Task<ApiResponse<MuestradanteDto>> GetMuestradanteByIdentificacion(string identificacion)
         {
             var result = await _muestradanteRepository.GetByDocumentoIdentidadAsync(identificacion);
-            return Ok(result);
+
+            if(result is not null)
+            {
+                return new ApiResponse<MuestradanteDto>
+                {
+                    StatusCode = 200,
+                    Data = new MuestradanteDto
+                    {
+                        Id = result.Id,
+                        Nombre = result.Nombre,
+                        DocumentoIdentidad = result.DocumentoIdentidad,
+                        PrimerApellido = result.PrimerApellido,
+                        SegundoApellido = result.SegundoApellido,
+                        Direccion = result.Direccion,
+                        FechaNacimiento = result.FechaNacimiento,
+                        Parentesco = result.Parentesco,
+                        Telefono = result.Telefono,
+                        Departamento = result.LugarNacimiento.Departamento,
+                        Municipio = result.LugarNacimiento.Municipio,
+                        TipoDocumento = result.TipoDocumento
+                    },
+                    ErrorMessage = null
+                };
+            }
+
+            return new ApiResponse<MuestradanteDto>
+            {
+                StatusCode = 404,
+                Data = null,
+                ErrorMessage = "No se encontraron resultados para el filtro especificado"
+            };
         }
 
         [HttpGet("/{id}")]
-        public async Task<IActionResult> GetMuestradanteById(Guid id)
+        [Authorize]
+        public async Task<ApiResponse<MuestradanteDto>> GetMuestradanteById(Guid id)
         {
             var result = await _muestradanteRepository.GetByIdAsync(id);
-            return Ok(result);
+            if (result is not null)
+            {
+                return new ApiResponse<MuestradanteDto>
+                {
+                    StatusCode = 200,
+                    Data = new MuestradanteDto
+                    {
+                        Id = result.Id,
+                        Nombre = result.Nombre,
+                        DocumentoIdentidad = result.DocumentoIdentidad,
+                        PrimerApellido = result.PrimerApellido,
+                        SegundoApellido = result.SegundoApellido,
+                        Direccion = result.Direccion,
+                        FechaNacimiento = result.FechaNacimiento,
+                        Parentesco = result.Parentesco,
+                        Telefono = result.Telefono,
+                        Departamento = result.LugarNacimiento.Departamento,
+                        Municipio = result.LugarNacimiento.Municipio,
+                        TipoDocumento = result.TipoDocumento
+                    },
+                    ErrorMessage = null
+                };
+            }
+
+            return new ApiResponse<MuestradanteDto>
+            {
+                StatusCode = 404,
+                Data = null,
+                ErrorMessage = "No se encontraron resultados para el filtro especificado"
+            };
         }
 
         [HttpGet("muestra/{muestradanteId}")]
+        [Authorize]
         public async Task<Muestradante> GetMuestradantes(Guid muestradanteId)
         {
             return await _muestradanteRepository.GetMuestra(muestradanteId);

@@ -26,6 +26,7 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Roles = "Administrator")]
         public async Task<Guid> CrearUsuario([FromBody] CreateUsuario request)
         {
             var result = await _sender.Send(request);
@@ -36,11 +37,11 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login([FromBody] UsuarioLogin usuarioLogin)
         {
-            var token = await _sender.Send(usuarioLogin);
+            var login = await _sender.Send(usuarioLogin);
 
-            if (token != string.Empty)
+            if (login is not null)
             {
-                return Ok(token);
+                return Ok(login);
             }
 
             return NotFound();

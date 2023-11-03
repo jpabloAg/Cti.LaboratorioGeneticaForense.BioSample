@@ -75,13 +75,15 @@ public sealed class Desaparecido : Entity
 
 public class DesaparecidoDto : Entity
 {
-    public string Nombre { get; private set; }
-    public string documentoIdentidad { get; private set; }
-    public string TipoDocumento { get; private set; }
-    public string PrimerApellido { get; private set; }
-    public string? SegundoApellido { get; private set; }
-    public string Genero { get; private set; }
-    public string Sirdec { get; private set; }
-    public Region LugarNacimiento { get; private set; }
-    public Region LugarTomaCuerpo { get; private set; }
+    public string Nombre { get; set; }
+    public string documentoIdentidad { get; set; }
+    public string TipoDocumento { get; set; }
+    public string PrimerApellido { get; set; }
+    public string? SegundoApellido { get; set; }
+    public string Genero { get; set; }
+    public string Sirdec { get; set; }
+    public string LugarNacimientoMunicipio { get; set; }
+    public string LugarNacimientoDepartamento { get; set; }
+    public string LugarTomaCuerpoMunicipio { get; set; }
+    public string LugarTomaCuerpoDepartamento { get; set; }
 }

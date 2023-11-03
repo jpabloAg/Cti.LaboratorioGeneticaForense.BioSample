@@ -18,17 +18,17 @@ public sealed class CreateDesaparecidoCommandHandler : IRequestHandler<CreateDes
 
     public async Task<Guid> Handle(CreateDesaparecidoCommand request, CancellationToken cancellationToken)
     {
-        var lugarNacimiento = new Region(request.lugarNacimientoDepartamento, request.lugarNacimientoMunicipio);
-        var lugarTomaCuerpo = new Region(request.lugarTomaCuerpoDepartamento, request.lugarTomaCuerpoMunicipio);
+        var lugarNacimiento = new Region(request.lugarNacimientoDepartamento.ToUpper(), request.lugarNacimientoMunicipio.ToUpper());
+        var lugarTomaCuerpo = new Region(request.lugarTomaCuerpoDepartamento.ToUpper(), request.lugarTomaCuerpoMunicipio.ToUpper());
 
         var desaparecido = Desaparecido.Create(
             Guid.NewGuid(),
-            request.nombre,
+            request.nombre.ToUpper(),
             request.documentoIdentidad,
-            request.tipoDocumento,
-            request.primerApellido,
-            request.segundoApellido,
-            request.genero,
+            request.tipoDocumento.ToUpper(),
+            request.primerApellido.ToUpper(),
+            request.segundoApellido.ToUpper(),
+            request.genero.ToUpper(),
             request.sirdec,
             lugarNacimiento,
             lugarTomaCuerpo);
