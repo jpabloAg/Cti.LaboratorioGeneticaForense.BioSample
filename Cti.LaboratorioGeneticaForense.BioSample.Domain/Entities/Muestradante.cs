@@ -14,11 +14,11 @@ public sealed class Muestradante : Entity
         string primerApellido,
         string? segundoApellido,
         string parentesco,
-        DateOnly fechaNacimiento,
+        DateTime fechaNacimiento,
         Region lugarNacimiento,
         string? direccion,
         string? telefono,
-        string genero)
+        string? genero)
         : base(id)
     {
         DocumentoIdentidad = documentoIdentidad;
@@ -31,6 +31,7 @@ public sealed class Muestradante : Entity
         LugarNacimiento = lugarNacimiento;
         Direccion = direccion;
         Telefono = telefono;
+        Genero = genero;
     }
 
     private Muestradante()
@@ -42,12 +43,12 @@ public sealed class Muestradante : Entity
     public string PrimerApellido { get; private set; }
     public string? SegundoApellido { get; private set; }
     public string Parentesco { get; private set; }
-    public DateOnly FechaNacimiento { get; private set; }
+    public DateTime FechaNacimiento { get; private set; }
     public Region LugarNacimiento { get; private set; }
     public string? Direccion { get; private set; }
     public string? Telefono { get; private set; }
     public string TipoDocumento { get; private set; }
-    public string Genero { get; private set; }
+    public string? Genero { get; private set; }
     public Muestra muestra { get; set; }
 
     public static Muestradante Create(
@@ -58,11 +59,11 @@ public sealed class Muestradante : Entity
         string primerApellido,
         string? segundoApellido,
         string parentesco,
-        DateOnly fechaNacimiento,
+        DateTime fechaNacimiento,
         Region lugarNacimiento,
         string? direccion,
         string? telefono,
-        string genero)
+        string? genero)
     {
         var muestradante = new Muestradante(
             id,
@@ -89,11 +90,11 @@ public class MuestradanteDto : Entity
     public string PrimerApellido { get; set; }
     public string? SegundoApellido { get; set; }
     public string Parentesco { get; set; }
-    public DateOnly FechaNacimiento { get; set; }
+    public DateTime FechaNacimiento { get; set; }
     public string Departamento { get; set; }
     public string Municipio { get; set; }
     public string? Direccion { get; set; }
     public string? Telefono { get; set; }
     public string TipoDocumento { get; set; }
-    public string Genero { get; set; }
+    public string? Genero { get; set; }
 }

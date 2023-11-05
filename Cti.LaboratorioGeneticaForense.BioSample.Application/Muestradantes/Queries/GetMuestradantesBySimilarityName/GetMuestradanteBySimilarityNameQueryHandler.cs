@@ -10,7 +10,7 @@ internal sealed class GetMuestradanteBySimilarityNameQueryHandler : IRequestHand
     private NpgsqlConnection connection;
     public GetMuestradanteBySimilarityNameQueryHandler()
     {
-        connection = new NpgsqlConnection("Server=biosample-db;Port=5432;Database=biosample;User Id=postgres;Password=postgres");
+        connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=biosample;User Id=postgres;Password=postgres");
         connection.Open();
     }
     public async Task<IEnumerable<MuestradanteDto>> Handle(GetMuestradanteBySimilarityNameQuery request, CancellationToken cancellationToken)

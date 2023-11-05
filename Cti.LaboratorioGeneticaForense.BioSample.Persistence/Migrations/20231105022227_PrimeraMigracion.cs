@@ -41,13 +41,13 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Persistence.Migrations
                     PrimerApellido = table.Column<string>(type: "text", nullable: false),
                     SegundoApellido = table.Column<string>(type: "text", nullable: true),
                     Parentesco = table.Column<string>(type: "text", nullable: false),
-                    FechaNacimiento = table.Column<DateOnly>(type: "date", nullable: false),
+                    FechaNacimiento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Departamento = table.Column<string>(type: "text", nullable: false),
                     Municipio = table.Column<string>(type: "text", nullable: false),
                     Direccion = table.Column<string>(type: "text", nullable: true),
                     Telefono = table.Column<string>(type: "text", nullable: true),
                     TipoDocumento = table.Column<string>(type: "text", nullable: false),
-                    Genero = table.Column<string>(type: "text", nullable: false)
+                    Genero = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

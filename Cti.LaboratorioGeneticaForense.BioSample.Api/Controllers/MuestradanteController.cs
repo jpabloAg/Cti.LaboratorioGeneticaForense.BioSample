@@ -94,7 +94,8 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
                         Telefono = result.Telefono,
                         Departamento = result.LugarNacimiento.Departamento,
                         Municipio = result.LugarNacimiento.Municipio,
-                        TipoDocumento = result.TipoDocumento
+                        TipoDocumento = result.TipoDocumento,
+                        Genero = result.Genero
                     },
                     ErrorMessage = null
                 };
@@ -131,7 +132,8 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
                         Telefono = result.Telefono,
                         Departamento = result.LugarNacimiento.Departamento,
                         Municipio = result.LugarNacimiento.Municipio,
-                        TipoDocumento = result.TipoDocumento
+                        TipoDocumento = result.TipoDocumento,
+                        Genero = result.Genero
                     },
                     ErrorMessage = null
                 };

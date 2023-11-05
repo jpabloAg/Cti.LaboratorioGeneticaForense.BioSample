@@ -15,4 +15,4 @@ public sealed record CreateMuestradanteCommand(
     string departamento,
     string? direccion,
     string? telefono,
-    string genero) : IRequest<Guid>;
+    string? genero) : IRequest<Guid>;

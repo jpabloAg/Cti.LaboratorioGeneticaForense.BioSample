@@ -26,7 +26,7 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Api.Controllers
         }
 
         [HttpPost("create")]
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         public async Task<Guid> CrearUsuario([FromBody] CreateUsuario request)
         {
             var result = await _sender.Send(request);

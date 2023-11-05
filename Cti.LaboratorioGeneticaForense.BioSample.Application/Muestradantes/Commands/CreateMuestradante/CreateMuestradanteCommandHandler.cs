@@ -36,7 +36,7 @@ internal sealed class CreateMuestradanteCommandHandler : IRequestHandler<CreateM
             request.primerApellido.ToUpper(),
             request.segundoApellido?.ToUpper(),
             request.parentesco.ToUpper(),
-            new DateOnly(request.fechaNacimiento.Year, request.fechaNacimiento.Month, request.fechaNacimiento.Day),
+            new DateTime(request.fechaNacimiento.Year, request.fechaNacimiento.Month, request.fechaNacimiento.Day),
             lugarNacimiento,
             request.direccion?.ToUpper(),
             request.telefono,

@@ -9,7 +9,7 @@ START TRANSACTION;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE TABLE "Desaparecido" (
         "Id" uuid NOT NULL,
         "Nombre" text NOT NULL,
@@ -30,7 +30,7 @@ END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE TABLE "Muestradante" (
         "Id" uuid NOT NULL,
         "DocumentoIdentidad" text NOT NULL,
@@ -38,13 +38,13 @@ BEGIN
         "PrimerApellido" text NOT NULL,
         "SegundoApellido" text NULL,
         "Parentesco" text NOT NULL,
-        "FechaNacimiento" date NOT NULL,
+        "FechaNacimiento" timestamp with time zone NOT NULL,
         "Departamento" text NOT NULL,
         "Municipio" text NOT NULL,
         "Direccion" text NULL,
         "Telefono" text NULL,
         "TipoDocumento" text NOT NULL,
-        "Genero" text NOT NULL,
+        "Genero" text NULL,
         CONSTRAINT "PK_Muestradante" PRIMARY KEY ("Id")
     );
     END IF;
@@ -52,7 +52,7 @@ END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE TABLE "Usuario" (
         "Id" uuid NOT NULL,
         "Username" text NOT NULL,
@@ -68,7 +68,7 @@ END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE TABLE "Muestra" (
         "Id" uuid NOT NULL,
         "RadicadoInterno" text NULL,
@@ -88,7 +88,7 @@ END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE TABLE "Anexo" (
         "Id" uuid NOT NULL,
         "OT" text NULL,
@@ -104,7 +104,7 @@ END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE TABLE "MuestraDesaparecido" (
         "MuestraId" uuid NOT NULL,
         "DesaparecidoId" uuid NOT NULL,
@@ -117,30 +117,30 @@ END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE UNIQUE INDEX "IX_Anexo_MuestraId" ON "Anexo" ("MuestraId");
     END IF;
 END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE UNIQUE INDEX "IX_Muestra_MuestradanteId" ON "Muestra" ("MuestradanteId");
     END IF;
 END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     CREATE INDEX "IX_MuestraDesaparecido_DesaparecidoId" ON "MuestraDesaparecido" ("DesaparecidoId");
     END IF;
 END $EF$;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231103022714_PrimeraMigracion') THEN
+    IF NOT EXISTS(SELECT 1 FROM "__EFMigrationsHistory" WHERE "MigrationId" = '20231105022227_PrimeraMigracion') THEN
     INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-    VALUES ('20231103022714_PrimeraMigracion', '6.0.15');
+    VALUES ('20231105022227_PrimeraMigracion', '6.0.15');
     END IF;
 END $EF$;
 COMMIT;

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cti.LaboratorioGeneticaForense.BioSample.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231103022714_PrimeraMigracion")]
+    [Migration("20231105022227_PrimeraMigracion")]
     partial class PrimeraMigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,11 +141,10 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("FechaNacimiento")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Genero")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Nombre")

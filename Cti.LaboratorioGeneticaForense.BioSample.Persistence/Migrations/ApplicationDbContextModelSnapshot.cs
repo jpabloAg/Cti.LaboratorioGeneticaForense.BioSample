@@ -139,11 +139,10 @@ namespace Cti.LaboratorioGeneticaForense.BioSample.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("FechaNacimiento")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Genero")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Nombre")
