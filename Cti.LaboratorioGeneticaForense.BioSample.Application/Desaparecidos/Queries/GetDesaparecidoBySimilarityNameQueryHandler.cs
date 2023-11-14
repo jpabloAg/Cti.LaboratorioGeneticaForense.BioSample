@@ -11,7 +11,7 @@ public sealed class GetDesaparecidoBySimilarityNameQueryHandler :
     private NpgsqlConnection connection;
     public GetDesaparecidoBySimilarityNameQueryHandler()
     {
-        connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=biosample;User Id=postgres;Password=postgres");
+        connection = new NpgsqlConnection("Server=biosample-db;Port=5432;Database=biosample;User Id=postgres;Password=postgres");
         connection.Open();
     }
     public async Task<IEnumerable<DesaparecidoDto>> Handle(GetDesaparecidoBySimilarityNameQuery request, CancellationToken cancellationToken)

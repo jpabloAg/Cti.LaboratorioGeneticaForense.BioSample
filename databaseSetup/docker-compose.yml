@@ -1,12 +1,12 @@
 version: '3.4'
 
 services:
-  #webapi:
-    #image: biosample-api
-    #depends_on:
-      #- biosample-db
-    #ports:
-      #- 80:80
+  webapi:
+    image: webapi
+    depends_on:
+      - biosample-db
+    ports:
+      - 80:80
   biosample-db:
     image: postgres:latest
     container_name: BiosampleDatabase
